@@ -1,0 +1,31 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-registrars",
+  "name": "arsys",
+  "license": "MIT",
+  "category": "domains",
+  "description": {
+    "name": "Dominios Arsys",
+    "tagline": "Dominios Arsys.",
+    "long": "Dominios Arsys.",
+    "features": [
+      "Provide functionality for registering, transferring and renewing of domains"
+    ]
+  },
+  "logo": {
+    "filename": "logo.png"
+  },
+  "support": {
+    "homepage": "https:\/\/www.arsys.es\/",
+    "learn_more": "https:\/\/www.arsys.es\/tour",
+    "email": "support@arsys.es",
+    "support_url": "https:\/\/support.arsys.es\/",
+    "docs_url": "https:\/\/developers.arsys.es\/domain-registrars\/"
+  },
+  "authors": [
+    {
+      "name": "Arsys",
+      "homepage": "https:\/\/www.arsys.es\/"
+    }
+  ]
+}
