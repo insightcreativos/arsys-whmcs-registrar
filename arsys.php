@@ -291,9 +291,6 @@ function arsys_SaveContactDetails( $params ) {
  * @see \WHMCS\Domains\DomainLookup\SearchResult
  */
 function arsys_CheckAvailability( $params ) {
-	if ( '62.57.20.247' === getenv( 'REMOTE_ADDR' ) ) {
-		echo "<textarea style='height:1000px'>";print_r(__FUNCTION__);echo "</textarea>";exit();
-	}
 	try {
 		$app     = arsys_getApp( $params );
 		$results = $app->dispatchAction( __FUNCTION__, $params );
@@ -647,4 +644,17 @@ function arsys_WhoisPrivacy( $params ) {
  */
 function arsys_getApp( array $params = [] ): ?App {
 	return App::get_instance( $params);
+}
+
+/**
+ * Translatable function.
+ *
+ * @param string $key
+ * @param string $custom
+ *
+ * @return string
+ */
+function arsys_translate( string $key, string $custom ) : string {
+    global $_LANG;
+    return $_LANG[ $key ] ?? $custom;
 }

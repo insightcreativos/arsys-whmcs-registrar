@@ -4,14 +4,13 @@
 
 {if $error}
 <div class="alert alert-error">
-	<strong>Sorry, we couldn't complete your request:</strong>
+	<strong>{$LANG.sorrywecouldnt}:</strong>
 	<br />{$error}
 </div>
 <br />
 {/if}
 
-<p>The Whois Privacy service replaces your personal information in the Whois requests for
-this domain to protect your privacy.</p>
+<p>{$LANG.estldwhoisprivacy}</p>
 
 <br /><br />
 
@@ -22,11 +21,11 @@ this domain to protect your privacy.</p>
 		<input type="hidden" name="modop" value="custom" />
 		<input type="hidden" name="ok" value="ok" />
 		<input type="hidden" name="a" value="whoisPrivacy" />
-		
+
 		{if !$status}
 		<input type="hidden" name="privacy" value="on" />
 		{/if}
-		
+
 		<input type="submit" class="btn btn-large {if $status}btn-danger{else}btn-success{/if}" value="{if $status}Disable{else}Enable{/if} Whois Privacy" />
 	</form>
 </div>

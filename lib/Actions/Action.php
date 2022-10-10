@@ -14,9 +14,6 @@ class Action {
 	public function __construct( App $app, array $params ) {
 		$this->app    = $app;
 		$this->params = $params;
-		if ( '62.57.20.247' === getenv( 'REMOTE_ADDR' ) ) {
-//			echo "<textarea style='height:1000px'>";print_r($params);echo "</textarea>";exit();
-		}
 
 		if ( array_key_exists( 'original', $this->params ) ) {
 			$params['sld'] = $this->params['original']['sld'];

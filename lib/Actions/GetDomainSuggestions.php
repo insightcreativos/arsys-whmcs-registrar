@@ -14,18 +14,18 @@ class GetDomainSuggestions extends Action {
 		$language = ( is_array( $suggestionSettings ) && array_key_exists( 'language',
 				$suggestionSettings ) ) ? $suggestionSettings['language'] : '';
 
-		$response    = $this->getApp()->getService( 'api' )->getDomainSuggestions( $query, $language, $tlds );
-		$suggestions = $response->get( 'suggests' );
+		/** @var \Arsys\API\Response\Response $response */
+		$response = $this->getApp()->getService( 'api' )->getDomainSuggestions( $query, $language, $tlds );
+		$return   = new ResultsList();
 
-		$return = new ResultsList();
-
-		foreach ( $suggestions as $sld => $tlds ) {
-			foreach ( $tlds as $tld => $available ) {
-				$searchResult = new SearchResult( $sld, $tld );
-				$status       = $available ? SearchResult::STATUS_NOT_REGISTERED : SearchResult::STATUS_REGISTERED;
-				$searchResult->setStatus( $status );
-				$return->append( $searchResult );
-			}
+		foreach ( $response->getResponseData() as $key => $tlds ) {
+			$domain       = 'http://' . $tlds['domain'];
+			$array        = explode( '.', parse_url( $domain, PHP_URL_HOST ) );
+			$sld          = end( $array );
+			$searchResult = new SearchResult( $array[0], $array[1] );
+			$status       = $tlds['state'] == 'available' ? SearchResult::STATUS_NOT_REGISTERED : SearchResult::STATUS_REGISTERED;
+			$searchResult->setStatus( $status );
+			$return->append( $searchResult );
 		}
 
 		return $return;

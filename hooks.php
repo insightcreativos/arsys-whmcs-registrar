@@ -4,6 +4,7 @@
 
 $hooks = [
 	'ClientAreaSidebars',
+	'ClientAreaPrimarySidebar'
 ];
 
 foreach ( $hooks as $hook ) {

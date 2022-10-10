@@ -20,6 +20,9 @@ class API_Service implements APIService_Interface {
 	public function __construct( array $options = [], $app ) {
 		$this->api = new API( $options );
 		$this->app = $app;
+        global $_LANG;
+        $lang = $GLOBALS['aInt']->language ?? 'english';
+        require_once $app->getDir() . "/lang/overrides/$lang.php";
 	}
 
 	/**
@@ -196,7 +199,8 @@ class API_Service implements APIService_Interface {
 	public function getNameservers( $domain ) {
 		$response = $this->getApiConnection()->domain_getNameServers( $domain );
 		if( empty( $response ) ) {
-			throw new Exception( 'No hemos podido leer lo server names', '100' );
+            // HACER traducir este mensaje, ver que hay en globales.
+			throw new Exception( arsys_translate( 'sorrywecouldntservername','No hemos podido leer los server names' ), '100' );
 		}
 		return $this->parseResponse( $response, [ 'domain' => $domain ] );
 	}
@@ -323,7 +327,7 @@ class API_Service implements APIService_Interface {
 			$params['tlds'] = implode( ",", $tlds );
 		}
 
-		$response = $this->getApiConnection()->tool_domainSuggests( $params );
+		$response = $this->getApiConnection()->domain_domainSuggests( $params );
 
 		return $this->parseResponse( $response, $params );
 	}
