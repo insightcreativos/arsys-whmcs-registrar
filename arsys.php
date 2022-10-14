@@ -447,7 +447,7 @@ function arsys_IDProtectToggle( $params ) {
  * @see https://developers.whmcs.com/domain-registrars/module-parameters/
  *
  */
-function arsys_GetEPPCode( $params ) {
+function arsys_GetEPPCode2( $params ) {
 	try {
 		$app     = arsys_getApp( $params );
 		$eppCode = $app->dispatchAction( __FUNCTION__, $params );
